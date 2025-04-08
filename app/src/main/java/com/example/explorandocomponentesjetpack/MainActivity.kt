@@ -51,6 +51,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun MostrarPreview() {
+    LazyColumnDemo()
+
 @Composable
 fun LazyRowDemo() {
     LazyRow {
@@ -60,9 +65,12 @@ fun LazyRowDemo() {
     }
 }
 
-
-@Preview(showBackground = true)
+}
 @Composable
-fun MostrarPreview() {
-    LazyRowDemo()
+fun LazyColumnDemo() {
+    LazyColumn {
+        items(5) { index ->
+            Text(text = "Item #$index", modifier = Modifier.padding(8.dp))
+        }
+    }
 }
