@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.compose.material:material:1.6.0")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.30.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

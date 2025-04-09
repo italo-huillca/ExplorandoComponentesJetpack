@@ -85,7 +85,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    BackdropScaffoldDemo()
+    FlowRowDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -253,4 +253,22 @@ fun BackdropScaffoldDemo() {
             Text("Contenido principal", modifier = Modifier.padding(16.dp))
         }
     )
+}
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun FlowRowDemo() {
+    FlowRow(
+        modifier = Modifier.padding(16.dp),
+        horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
+        verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
+    ) {
+        repeat(10) {
+            Text(
+                text = "Item $it",
+                modifier = Modifier
+                    .background(Color.LightGray)
+                    .padding(8.dp)
+            )
+        }
+    }
 }
