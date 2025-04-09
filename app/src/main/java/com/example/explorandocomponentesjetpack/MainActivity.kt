@@ -57,6 +57,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
+import androidx.compose.material.Switch
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -98,7 +99,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    SpacerDemo()
+    SwitchDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -462,5 +463,21 @@ fun SpacerDemo() {
         Text("Elemento superior")
         Spacer(modifier = Modifier.height(16.dp)) // Espacio vertical
         Text("Elemento inferior")
+    }
+}
+@Composable
+fun SwitchDemo() {
+    var isChecked by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier.padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Switch(
+            checked = isChecked,
+            onCheckedChange = { isChecked = it }
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(if (isChecked) "Activado" else "Desactivado")
     }
 }
