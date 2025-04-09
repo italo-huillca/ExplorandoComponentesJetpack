@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -49,6 +50,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.BackdropScaffold
 import androidx.compose.material.BackdropValue
@@ -64,6 +67,8 @@ import androidx.compose.material.NavigationRailItem
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Switch
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
@@ -109,7 +114,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    OutlinedTextFieldDemo()
+    SnackbarDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -283,8 +288,8 @@ fun BackdropScaffoldDemo() {
 fun FlowRowDemo() {
     FlowRow(
         modifier = Modifier.padding(16.dp),
-        horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         repeat(10) {
             Text(
@@ -678,4 +683,29 @@ fun OutlinedTextFieldDemo() {
             modifier = Modifier.fillMaxWidth()
         )
     }
+}
+
+@Composable
+fun SnackbarDemo() {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        content = { padding ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                Button(onClick = {
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar("¡Acción completada!")
+                    }
+                }) {
+                    Text("Mostrar Snackbar")
+                }
+            }
+        }
+    )
 }
