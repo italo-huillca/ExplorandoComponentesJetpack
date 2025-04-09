@@ -57,6 +57,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.rememberBackdropScaffoldState
@@ -92,7 +93,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    FloatingActionButtonDemo()
+    IconDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -375,6 +376,24 @@ fun FloatingActionButtonDemo() {
             }
         }
     )
+}
+@Composable
+fun IconDemo() {
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Favorite,
+            contentDescription = "Icono de favorito",
+            tint = Color.Red,
+            modifier = Modifier.size(32.dp)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text("Icono con texto")
+    }
 }
 
 
