@@ -52,6 +52,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.BackdropScaffold
 import androidx.compose.material.BackdropValue
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
@@ -62,6 +64,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
@@ -100,7 +103,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    TopAppBarDemo()
+    BottomNavigationDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -506,6 +509,36 @@ fun TopAppBarDemo() {
                 .fillMaxSize()
                 .padding(padding)) {
                 Text("Contenido principal", modifier = Modifier.align(Alignment.Center))
+            }
+        }
+    )
+}
+@Composable
+fun BottomNavigationDemo() {
+    var selectedIndex by remember { mutableStateOf(0) }
+    val items = listOf("Inicio", "Buscar", "Perfil")
+
+    Scaffold(
+        bottomBar = {
+            BottomNavigation {
+                items.forEachIndexed { index, item ->
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Default.Home, contentDescription = item) },
+                        label = { Text(item) },
+                        selected = selectedIndex == index,
+                        onClick = { selectedIndex = index }
+                    )
+                }
+            }
+        },
+        content = { padding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Sección: ${items[selectedIndex]}")
             }
         }
     )
