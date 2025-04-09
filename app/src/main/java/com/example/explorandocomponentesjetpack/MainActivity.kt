@@ -51,6 +51,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -76,7 +78,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    SurfaceDemo()
+    ChipDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -201,4 +203,16 @@ fun SurfaceDemo() {
             modifier = Modifier.padding(16.dp)
         )
     }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ChipDemo() {
+    AssistChip(
+        onClick = { /* Acción */ },
+        label = { Text("Chip de ejemplo") },
+        leadingIcon = {
+            Icon(Icons.Default.Star, contentDescription = null)
+        },
+        modifier = Modifier.padding(8.dp)
+    )
 }
