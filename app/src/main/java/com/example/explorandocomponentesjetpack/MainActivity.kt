@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    CheckboxDemo()
+    FloatingActionButtonDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -357,3 +357,24 @@ fun CheckboxDemo() {
         Text("Acepto los términos")
     }
 }
+@Composable
+fun FloatingActionButtonDemo() {
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /* Acción FAB */ }
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Agregar")
+            }
+        },
+        content = { padding ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)) {
+                Text("Contenido principal", modifier = Modifier.align(Alignment.Center))
+            }
+        }
+    )
+}
+
+
