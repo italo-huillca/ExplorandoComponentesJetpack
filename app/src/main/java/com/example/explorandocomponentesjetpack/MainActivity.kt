@@ -56,6 +56,7 @@ import androidx.compose.material.Checkbox
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
 import androidx.compose.material.RadioButton
+import androidx.compose.material.Slider
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -97,7 +98,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    RadioButtonDemo()
+    SliderDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -441,3 +442,18 @@ fun RadioButtonDemo() {
         }
     }
 }
+@Composable
+fun SliderDemo() {
+    var sliderValue by remember { mutableStateOf(0f) }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("Valor: ${sliderValue.toInt()}")
+        Slider(
+            value = sliderValue,
+            onValueChange = { sliderValue = it },
+            valueRange = 0f..100f,
+            steps = 4 // Opcional: define saltos intermedios
+        )
+    }
+}
+
