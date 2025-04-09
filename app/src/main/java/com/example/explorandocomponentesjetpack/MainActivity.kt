@@ -70,6 +70,8 @@ import androidx.compose.material.Slider
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Switch
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -114,7 +116,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    SnackbarDemo()
+    TabRowDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -708,4 +710,29 @@ fun SnackbarDemo() {
             }
         }
     )
+}
+@Composable
+fun TabRowDemo() {
+    val tabs = listOf("Inicio", "Perfil", "Ajustes")
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
+    Column {
+        TabRow(selectedTabIndex = selectedTabIndex) {
+            tabs.forEachIndexed { index, title ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                    text = { Text(title) }
+                )
+            }
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Vista actual: ${tabs[selectedTabIndex]}")
+        }
+    }
 }
