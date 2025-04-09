@@ -59,6 +59,8 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.IconButton
+import androidx.compose.material.NavigationRail
+import androidx.compose.material.NavigationRailItem
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
 import androidx.compose.material.Switch
@@ -106,7 +108,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    LazyVerticalGridDemo()
+    NavigationRailDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -632,6 +634,33 @@ fun LazyVerticalGridDemo() {
                     Text(items[index])
                 }
             }
+        }
+    }
+}
+@Composable
+fun NavigationRailDemo() {
+    var selectedItem by remember { mutableStateOf(0) }
+    val items = listOf("Inicio", "Buscar", "Ajustes")
+
+    Row(modifier = Modifier.fillMaxSize()) {
+        NavigationRail {
+            items.forEachIndexed { index, item ->
+                NavigationRailItem(
+                    icon = { Icon(Icons.Default.Home, contentDescription = item) },
+                    label = { Text(item) },
+                    selected = selectedItem == index,
+                    onClick = { selectedItem = index }
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Sección: ${items[selectedItem]}")
         }
     }
 }
