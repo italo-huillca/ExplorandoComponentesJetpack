@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    AlertDialogDemo()
+    CardDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -321,6 +321,22 @@ fun AlertDialogDemo() {
                     }
                 }
             )
+        }
+    }
+}
+@Composable
+fun CardDemo() {
+    Card(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(8.dp),
+        shape = RoundedCornerShape(12.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text("Título de la tarjeta", style = MaterialTheme.typography.titleMedium)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Este es el contenido de una Card.")
         }
     }
 }
