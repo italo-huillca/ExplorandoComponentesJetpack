@@ -57,6 +57,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.DropdownMenu
 import androidx.compose.material.IconButton
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
@@ -71,6 +72,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.rememberBackdropScaffoldState
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -104,7 +106,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    DividerDemo()
+    DropdownMenuDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -578,5 +580,31 @@ fun DividerDemo() {
         Text("Elemento 1")
         Divider(modifier = Modifier.padding(vertical = 8.dp))
         Text("Elemento 2")
+    }
+}
+@Composable
+fun DropdownMenuDemo() {
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOption by remember { mutableStateOf("Selecciona una opción") }
+    val options = listOf("Opción 1", "Opción 2", "Opción 3")
+
+    Box(modifier = Modifier.padding(16.dp)) {
+        TextButton(onClick = { expanded = true }) {
+            Text(selectedOption)
+        }
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    text = { Text(option) },
+                    onClick = {
+                        selectedOption = option
+                        expanded = false
+                    }
+                )
+            }
+        }
     }
 }
