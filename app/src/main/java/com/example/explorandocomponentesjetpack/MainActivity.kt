@@ -49,6 +49,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.*
@@ -70,7 +76,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    ConstraintLayoutDemo()
+    ScaffoldDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -114,6 +120,7 @@ fun GridDemo() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConstraintLayoutDemo() {
     ConstraintLayout(
@@ -141,4 +148,44 @@ fun ConstraintLayoutDemo() {
                 }
         )
     }
+    @Composable
+    fun ScaffoldDemo() {
+        Scaffold(
+            topBar = {
+                TopAppBar(title = { Text("Scaffold Demo") })
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = {}) {
+                    Icon(Icons.Default.Add, contentDescription = "Add")
+                }
+            },
+            content = { padding ->
+                Text(
+                    "Contenido principal",
+                    modifier = Modifier.padding(padding).padding(16.dp)
+                )
+            }
+        )
+    }
 }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ScaffoldDemo() {
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text("Scaffold Demo") })
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {}) {
+                Icon(Icons.Default.Add, contentDescription = "Add")
+            }
+        },
+        content = { padding ->
+            Text(
+                "Contenido principal",
+                modifier = Modifier.padding(padding).padding(16.dp)
+            )
+        }
+    )
+}
+
