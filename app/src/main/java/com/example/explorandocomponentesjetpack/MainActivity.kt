@@ -63,6 +63,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.rememberBackdropScaffoldState
 import androidx.compose.material3.AssistChip
@@ -99,7 +100,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    SwitchDemo()
+    TopAppBarDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -480,4 +481,32 @@ fun SwitchDemo() {
         Spacer(modifier = Modifier.width(8.dp))
         Text(if (isChecked) "Activado" else "Desactivado")
     }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopAppBarDemo() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Mi Aplicación") },
+                navigationIcon = {
+                    IconButton(onClick = { /* Acción del ícono */ }) {
+                        Icon(Icons.Default.Menu, contentDescription = "Menú")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { /* Acción de búsqueda */ }) {
+                        Icon(Icons.Default.Search, contentDescription = "Buscar")
+                    }
+                }
+            )
+        },
+        content = { padding ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)) {
+                Text("Contenido principal", modifier = Modifier.align(Alignment.Center))
+            }
+        }
+    )
 }
