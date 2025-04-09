@@ -1,5 +1,9 @@
 package com.example.explorandocomponentesjetpack
-
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.unit.dp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -43,6 +47,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.*
+import androidx.constraintlayout.compose.ConstraintLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +70,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    GridDemo()
+    ConstraintLayoutDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -101,5 +111,34 @@ fun GridDemo() {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun ConstraintLayoutDemo() {
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        val (box1, box2) = createRefs()
+
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .background(Color.Red)
+                .constrainAs(box1) {
+                    top.linkTo(parent.top, margin = 16.dp)
+                    start.linkTo(parent.start, margin = 16.dp)
+                }
+        )
+
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .background(Color.Blue)
+                .constrainAs(box2) {
+                    top.linkTo(box1.bottom, margin = 16.dp)
+                    start.linkTo(box1.end, margin = 16.dp)
+                }
+        )
     }
 }
