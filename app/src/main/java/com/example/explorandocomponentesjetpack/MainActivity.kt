@@ -106,7 +106,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    DropdownMenuDemo()
+    LazyVerticalGridDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -604,6 +604,33 @@ fun DropdownMenuDemo() {
                         expanded = false
                     }
                 )
+            }
+        }
+    }
+}
+@Composable
+fun LazyVerticalGridDemo() {
+    val items = (1..20).map { "Item $it" }
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        contentPadding = PaddingValues(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        items(items.size) { index ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Text(items[index])
+                }
             }
         }
     }
