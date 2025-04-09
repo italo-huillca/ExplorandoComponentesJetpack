@@ -71,7 +71,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.*
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -93,7 +95,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    IconDemo()
+    ImageDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -396,4 +398,15 @@ fun IconDemo() {
     }
 }
 
+@Composable
+fun ImageDemo() {
+    Image(
+        painter = painterResource(id = R.drawable.pfp),
+        contentDescription = "Imagen local",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(200.dp)
+            .clip(RoundedCornerShape(8.dp))
+    )
+}
 
