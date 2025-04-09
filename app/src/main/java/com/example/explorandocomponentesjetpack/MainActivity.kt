@@ -55,6 +55,7 @@ import androidx.compose.material.BackdropValue
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
+import androidx.compose.material.RadioButton
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -96,7 +97,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    CircularProgressBarDemo()
+    RadioButtonDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -417,3 +418,26 @@ fun CircularProgressBarDemo() {
     }
 }
 
+@Composable
+fun RadioButtonDemo() {
+    var selectedOption by remember { mutableStateOf("Opción 1") }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+                selected = selectedOption == "Opción 1",
+                onClick = { selectedOption = "Opción 1" }
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Opción 1")
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+                selected = selectedOption == "Opción 2",
+                onClick = { selectedOption = "Opción 2" }
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Opción 2")
+        }
+    }
+}
