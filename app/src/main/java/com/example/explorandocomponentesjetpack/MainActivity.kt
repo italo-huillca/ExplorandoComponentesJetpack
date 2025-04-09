@@ -52,6 +52,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.BackdropScaffold
 import androidx.compose.material.BackdropValue
+import androidx.compose.material.Checkbox
 import androidx.compose.material.IconButton
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
@@ -91,7 +92,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    CardDemo()
+    CheckboxDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -338,5 +339,21 @@ fun CardDemo() {
             Spacer(modifier = Modifier.height(8.dp))
             Text("Este es el contenido de una Card.")
         }
+    }
+}
+@Composable
+fun CheckboxDemo() {
+    var checked by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier.padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = checked,
+            onCheckedChange = { checked = it }
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text("Acepto los términos")
     }
 }
