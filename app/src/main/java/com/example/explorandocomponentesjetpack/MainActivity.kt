@@ -77,6 +77,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
@@ -86,6 +87,8 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -116,7 +119,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    TabRowDemo()
+    TooltipDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -733,6 +736,26 @@ fun TabRowDemo() {
             contentAlignment = Alignment.Center
         ) {
             Text("Vista actual: ${tabs[selectedTabIndex]}")
+        }
+    }
+}
+
+@Composable
+fun TooltipDemo() {
+    var showTooltip by remember { mutableStateOf(false) }
+
+    Box(modifier = Modifier.padding(32.dp)) {
+        IconButton(onClick = { showTooltip = !showTooltip }) {
+            Icon(Icons.Default.Info, contentDescription = "Info")
+        }
+        if (showTooltip) {
+            Text(
+                "Información adicional",
+                modifier = Modifier
+                    .background(Color.LightGray)
+                    .padding(8.dp)
+                    .align(Alignment.TopStart)
+            )
         }
     }
 }
