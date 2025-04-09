@@ -61,6 +61,7 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.IconButton
 import androidx.compose.material.NavigationRail
 import androidx.compose.material.NavigationRailItem
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
 import androidx.compose.material.Switch
@@ -108,7 +109,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    NavigationRailDemo()
+    OutlinedTextFieldDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -662,5 +663,19 @@ fun NavigationRailDemo() {
         ) {
             Text("Sección: ${items[selectedItem]}")
         }
+    }
+}
+@Composable
+fun OutlinedTextFieldDemo() {
+    var text by remember { mutableStateOf("") }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Nombre") },
+            placeholder = { Text("Ingresa tu nombre") },
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
