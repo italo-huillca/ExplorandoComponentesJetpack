@@ -49,18 +49,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.BackdropScaffold
+import androidx.compose.material.BackdropValue
+import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.rememberBackdropScaffoldState
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.*
 import androidx.constraintlayout.compose.ConstraintLayout
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,7 +85,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    ChipDemo()
+    BackdropScaffoldDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -214,5 +221,36 @@ fun ChipDemo() {
             Icon(Icons.Default.Star, contentDescription = null)
         },
         modifier = Modifier.padding(8.dp)
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BackdropScaffoldDemo() {
+    val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Concealed)
+    val scope = rememberCoroutineScope()
+
+    BackdropScaffold(
+        scaffoldState = scaffoldState,
+        appBar = {
+            TopAppBar(
+                title = { Text("Backdrop Scaffold") },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        scope.launch {
+                            scaffoldState.reveal()
+                        }
+                    }) {
+                        Icon(Icons.Default.Menu, contentDescription = null)
+                    }
+                }
+            )
+        },
+        backLayerContent = {
+            Text("Contenido trasero", modifier = Modifier.padding(16.dp))
+        },
+        frontLayerContent = {
+            Text("Contenido principal", modifier = Modifier.padding(16.dp))
+        }
     )
 }
