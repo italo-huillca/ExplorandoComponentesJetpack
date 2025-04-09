@@ -98,7 +98,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    SliderDemo()
+    SpacerDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -456,4 +456,11 @@ fun SliderDemo() {
         )
     }
 }
-
+@Composable
+fun SpacerDemo() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("Elemento superior")
+        Spacer(modifier = Modifier.height(16.dp)) // Espacio vertical
+        Text("Elemento inferior")
+    }
+}
