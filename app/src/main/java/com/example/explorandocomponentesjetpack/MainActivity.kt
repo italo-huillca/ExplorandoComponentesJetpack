@@ -56,6 +56,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.IconButton
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Slider
@@ -103,7 +104,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    DialogDemo()
+    DividerDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -569,5 +570,13 @@ fun DialogDemo() {
                 }
             )
         }
+    }
+}
+@Composable
+fun DividerDemo() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("Elemento 1")
+        Divider(modifier = Modifier.padding(vertical = 8.dp))
+        Text("Elemento 2")
     }
 }
