@@ -85,7 +85,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    FlowRowDemo()
+    FlowColumnDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -267,6 +267,24 @@ fun FlowRowDemo() {
                 text = "Item $it",
                 modifier = Modifier
                     .background(Color.LightGray)
+                    .padding(8.dp)
+            )
+        }
+    }
+}
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun FlowColumnDemo() {
+    FlowColumn(
+        modifier = Modifier.padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        repeat(8) {
+            Text(
+                text = "Elemento $it",
+                modifier = Modifier
+                    .background(Color(0xFFDCE775))
                     .padding(8.dp)
             )
         }
