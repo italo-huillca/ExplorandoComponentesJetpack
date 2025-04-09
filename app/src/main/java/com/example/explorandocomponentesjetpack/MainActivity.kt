@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    BottomNavigationDemo()
+    DialogDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -542,4 +542,32 @@ fun BottomNavigationDemo() {
             }
         }
     )
+}
+@Composable
+fun DialogDemo() {
+    var showDialog by remember { mutableStateOf(false) }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Button(onClick = { showDialog = true }) {
+            Text("Mostrar diálogo")
+        }
+
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = { Text("Confirmación") },
+                text = { Text("¿Estás seguro de continuar?") },
+                confirmButton = {
+                    TextButton(onClick = { showDialog = false }) {
+                        Text("Aceptar")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showDialog = false }) {
+                        Text("Cancelar")
+                    }
+                }
+            )
+        }
+    }
 }
