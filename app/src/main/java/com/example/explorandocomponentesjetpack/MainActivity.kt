@@ -53,6 +53,7 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.BackdropScaffold
 import androidx.compose.material.BackdropValue
 import androidx.compose.material.Checkbox
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
@@ -95,7 +96,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    ImageDemo()
+    CircularProgressBarDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -408,5 +409,11 @@ fun ImageDemo() {
             .size(200.dp)
             .clip(RoundedCornerShape(8.dp))
     )
+}
+@Composable
+fun CircularProgressBarDemo() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
 }
 
