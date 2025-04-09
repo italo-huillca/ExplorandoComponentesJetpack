@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MostrarPreview() {
-    ScaffoldDemo()
+    SurfaceDemo()
 
 @Composable
 fun LazyRowDemo() {
@@ -188,4 +188,17 @@ fun ScaffoldDemo() {
         }
     )
 }
-
+@Composable
+fun SurfaceDemo() {
+    Surface(
+        modifier = Modifier.padding(16.dp),
+        color = Color(0xFFBBDEFB),
+        shape = RoundedCornerShape(8.dp),
+        tonalElevation = 4.dp
+    ) {
+        Text(
+            text = "Este es un Surface",
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
